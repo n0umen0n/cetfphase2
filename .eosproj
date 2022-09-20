@@ -1,0 +1,21 @@
+{
+  "main": "src/cetf.cpp",
+  "contract": "cetf",
+  "include": "",
+  "resource": "",
+  "cdt": "cmd",
+  "output": "",
+  "scripts": {
+    "build": "eosio-cpp -abigen -I ./include -R ./resource -contract cetf -o cetf.wasm src/cetf.cpp src/cetf-claim.cpp src/cetf-config.cpp src/cetf-rebalance.cpp src/cetf-redeem.cpp src/cetf-stake.cpp src/cetf-token.cpp src/cetf-vote.cpp"
+  },
+  "deploy": {
+    "target": "both",
+    "mainnet": "",
+    "kylin": "",
+    "jungle": "",
+    "local": ""
+  },
+  "test": {
+    "npmClient": ""
+  }
+}

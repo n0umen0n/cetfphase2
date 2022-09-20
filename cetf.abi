@@ -1,0 +1,1406 @@
+{
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT ",
+    "version": "eosio::abi/1.1",
+    "types": [],
+    "structs": [
+        {
+            "name": "account",
+            "base": "",
+            "fields": [
+                {
+                    "name": "balance",
+                    "type": "asset"
+                }
+            ]
+        },
+        {
+            "name": "addportfel",
+            "base": "",
+            "fields": [
+                {
+                    "name": "community",
+                    "type": "name"
+                },
+                {
+                    "name": "creator",
+                    "type": "name"
+                },
+                {
+                    "name": "pollkey",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "addportftb",
+            "base": "",
+            "fields": [
+                {
+                    "name": "token",
+                    "type": "symbol[]"
+                },
+                {
+                    "name": "totalvote",
+                    "type": "uint64[]"
+                },
+                {
+                    "name": "pollkey",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "addtokuz",
+            "base": "",
+            "fields": [
+                {
+                    "name": "tokeninfund",
+                    "type": "float64[]"
+                },
+                {
+                    "name": "tokenwortheos",
+                    "type": "float64[]"
+                },
+                {
+                    "name": "tokenperold",
+                    "type": "float64[]"
+                },
+                {
+                    "name": "tokenpercnew",
+                    "type": "float64[]"
+                },
+                {
+                    "name": "decimals",
+                    "type": "int64[]"
+                },
+                {
+                    "name": "pairid",
+                    "type": "uint64[]"
+                },
+                {
+                    "name": "strpairid",
+                    "type": "string[]"
+                },
+                {
+                    "name": "token",
+                    "type": "symbol[]"
+                },
+                {
+                    "name": "contract",
+                    "type": "name[]"
+                },
+                {
+                    "name": "ratio",
+                    "type": "float64[]"
+                },
+                {
+                    "name": "minamount",
+                    "type": "asset[]"
+                },
+                {
+                    "name": "totalvote",
+                    "type": "uint64[]"
+                },
+                {
+                    "name": "community",
+                    "type": "name"
+                },
+                {
+                    "name": "pollkey",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "adjtotvot",
+            "base": "",
+            "fields": [
+                {
+                    "name": "totalvote",
+                    "type": "uint64[]"
+                },
+                {
+                    "name": "pollkey",
+                    "type": "uint64"
+                },
+                {
+                    "name": "sumofallopt",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "adjusttok",
+            "base": "",
+            "fields": [
+                {
+                    "name": "contract",
+                    "type": "name"
+                },
+                {
+                    "name": "token",
+                    "type": "symbol"
+                },
+                {
+                    "name": "decimals",
+                    "type": "int64"
+                },
+                {
+                    "name": "tokenpercnew",
+                    "type": "float64"
+                }
+            ]
+        },
+        {
+            "name": "basetok",
+            "base": "",
+            "fields": [
+                {
+                    "name": "base",
+                    "type": "symbol"
+                }
+            ]
+        },
+        {
+            "name": "cetfvote",
+            "base": "",
+            "fields": [
+                {
+                    "name": "usersvote",
+                    "type": "uint64[]"
+                },
+                {
+                    "name": "pollkey",
+                    "type": "uint64"
+                },
+                {
+                    "name": "community",
+                    "type": "name"
+                },
+                {
+                    "name": "voter",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "claimtime",
+            "base": "",
+            "fields": [
+                {
+                    "name": "user",
+                    "type": "name"
+                },
+                {
+                    "name": "claimperiod",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "clmperfreq",
+            "base": "",
+            "fields": [
+                {
+                    "name": "periodfreq",
+                    "type": "int64"
+                }
+            ]
+        },
+        {
+            "name": "create",
+            "base": "",
+            "fields": [
+                {
+                    "name": "issuer",
+                    "type": "name"
+                },
+                {
+                    "name": "maximum_supply",
+                    "type": "asset"
+                }
+            ]
+        },
+        {
+            "name": "currency_stats",
+            "base": "",
+            "fields": [
+                {
+                    "name": "supply",
+                    "type": "asset"
+                },
+                {
+                    "name": "max_supply",
+                    "type": "asset"
+                },
+                {
+                    "name": "issuer",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "delrebalon",
+            "base": "",
+            "fields": []
+        },
+        {
+            "name": "deltoken",
+            "base": "",
+            "fields": [
+                {
+                    "name": "token",
+                    "type": "symbol[]"
+                },
+                {
+                    "name": "totalvote",
+                    "type": "uint64[]"
+                },
+                {
+                    "name": "community",
+                    "type": "name"
+                },
+                {
+                    "name": "pollkey",
+                    "type": "int64"
+                },
+                {
+                    "name": "sym",
+                    "type": "symbol"
+                }
+            ]
+        },
+        {
+            "name": "deltokoncet",
+            "base": "",
+            "fields": [
+                {
+                    "name": "sym",
+                    "type": "symbol"
+                }
+            ]
+        },
+        {
+            "name": "divperiod",
+            "base": "",
+            "fields": [
+                {
+                    "name": "periodstart",
+                    "type": "time_point_sec"
+                },
+                {
+                    "name": "claimperiod",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "eoscapt",
+            "base": "",
+            "fields": [
+                {
+                    "name": "capturedeos",
+                    "type": "asset"
+                }
+            ]
+        },
+        {
+            "name": "eosworthbuy",
+            "base": "",
+            "fields": [
+                {
+                    "name": "eosworthbuy",
+                    "type": "float64"
+                },
+                {
+                    "name": "token",
+                    "type": "symbol"
+                }
+            ]
+        },
+        {
+            "name": "etffees",
+            "base": "",
+            "fields": [
+                {
+                    "name": "totalfees",
+                    "type": "asset"
+                }
+            ]
+        },
+        {
+            "name": "etfsize",
+            "base": "",
+            "fields": [
+                {
+                    "name": "size",
+                    "type": "int8"
+                }
+            ]
+        },
+        {
+            "name": "feesadjust",
+            "base": "",
+            "fields": [
+                {
+                    "name": "adjustcrtclm",
+                    "type": "asset"
+                }
+            ]
+        },
+        {
+            "name": "getcetf",
+            "base": "",
+            "fields": [
+                {
+                    "name": "user",
+                    "type": "name"
+                },
+                {
+                    "name": "clmspecifier",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "getdiv",
+            "base": "",
+            "fields": [
+                {
+                    "name": "user",
+                    "type": "name"
+                },
+                {
+                    "name": "clmspecifier",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "indstkdetf",
+            "base": "",
+            "fields": [
+                {
+                    "name": "id",
+                    "type": "uint64"
+                },
+                {
+                    "name": "staked",
+                    "type": "asset"
+                },
+                {
+                    "name": "staketime",
+                    "type": "time_point_sec"
+                },
+                {
+                    "name": "stakeperiod",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "issue",
+            "base": "",
+            "fields": [
+                {
+                    "name": "to",
+                    "type": "name"
+                },
+                {
+                    "name": "quantity",
+                    "type": "asset"
+                },
+                {
+                    "name": "memo",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "issuetoken",
+            "base": "",
+            "fields": [
+                {
+                    "name": "owner",
+                    "type": "name"
+                },
+                {
+                    "name": "quantity",
+                    "type": "asset"
+                }
+            ]
+        },
+        {
+            "name": "mngtab",
+            "base": "",
+            "fields": [
+                {
+                    "name": "nrofmanagers",
+                    "type": "uint64"
+                },
+                {
+                    "name": "community",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "modddtokens",
+            "base": "",
+            "fields": [
+                {
+                    "name": "tokeninfund",
+                    "type": "float64[]"
+                },
+                {
+                    "name": "minamount",
+                    "type": "asset[]"
+                },
+                {
+                    "name": "token",
+                    "type": "symbol[]"
+                }
+            ]
+        },
+        {
+            "name": "pair",
+            "base": "",
+            "fields": [
+                {
+                    "name": "id",
+                    "type": "uint64"
+                },
+                {
+                    "name": "token0",
+                    "type": "token"
+                },
+                {
+                    "name": "token1",
+                    "type": "token"
+                },
+                {
+                    "name": "reserve0",
+                    "type": "asset"
+                },
+                {
+                    "name": "reserve1",
+                    "type": "asset"
+                },
+                {
+                    "name": "liquidity_token",
+                    "type": "uint64"
+                },
+                {
+                    "name": "price0_last",
+                    "type": "float64"
+                },
+                {
+                    "name": "price1_last",
+                    "type": "float64"
+                },
+                {
+                    "name": "price0_cumulative_last",
+                    "type": "uint64"
+                },
+                {
+                    "name": "price1_cumulative_last",
+                    "type": "uint64"
+                },
+                {
+                    "name": "block_time_last",
+                    "type": "time_point_sec"
+                }
+            ]
+        },
+        {
+            "name": "pause",
+            "base": "",
+            "fields": [
+                {
+                    "name": "ispaused",
+                    "type": "bool"
+                }
+            ]
+        },
+        {
+            "name": "pausetabla",
+            "base": "",
+            "fields": [
+                {
+                    "name": "ispaused",
+                    "type": "bool"
+                }
+            ]
+        },
+        {
+            "name": "perzonstaked",
+            "base": "",
+            "fields": [
+                {
+                    "name": "id",
+                    "type": "uint64"
+                },
+                {
+                    "name": "staked",
+                    "type": "asset"
+                },
+                {
+                    "name": "staketime",
+                    "type": "time_point_sec"
+                },
+                {
+                    "name": "stakeperiod",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "portfolios",
+            "base": "",
+            "fields": [
+                {
+                    "name": "pollkey",
+                    "type": "uint64"
+                },
+                {
+                    "name": "community",
+                    "type": "name"
+                },
+                {
+                    "name": "creator",
+                    "type": "name"
+                },
+                {
+                    "name": "totalvote",
+                    "type": "uint64[]"
+                },
+                {
+                    "name": "answers",
+                    "type": "symbol[]"
+                },
+                {
+                    "name": "nrofvoters",
+                    "type": "uint8"
+                },
+                {
+                    "name": "sumofallopt",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "prstotstkd",
+            "base": "",
+            "fields": [
+                {
+                    "name": "staker",
+                    "type": "name"
+                },
+                {
+                    "name": "indtotstaked",
+                    "type": "asset"
+                }
+            ]
+        },
+        {
+            "name": "prstotstkdbx",
+            "base": "",
+            "fields": [
+                {
+                    "name": "staker",
+                    "type": "name"
+                },
+                {
+                    "name": "indtotstaked",
+                    "type": "asset"
+                }
+            ]
+        },
+        {
+            "name": "rebalance",
+            "base": "",
+            "fields": [
+                {
+                    "name": "user",
+                    "type": "name"
+                },
+                {
+                    "name": "pollkey",
+                    "type": "uint64"
+                },
+                {
+                    "name": "community",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "rebalancetwo",
+            "base": "",
+            "fields": [
+                {
+                    "name": "answers",
+                    "type": "symbol[]"
+                }
+            ]
+        },
+        {
+            "name": "rebalon",
+            "base": "",
+            "fields": [
+                {
+                    "name": "tokeninfund",
+                    "type": "float64"
+                },
+                {
+                    "name": "tokenwortheos",
+                    "type": "float64"
+                },
+                {
+                    "name": "tokenperold",
+                    "type": "float64"
+                },
+                {
+                    "name": "tokenpercnew",
+                    "type": "float64"
+                },
+                {
+                    "name": "decimals",
+                    "type": "int64"
+                },
+                {
+                    "name": "pairid",
+                    "type": "uint64"
+                },
+                {
+                    "name": "strpairid",
+                    "type": "string"
+                },
+                {
+                    "name": "token",
+                    "type": "symbol"
+                },
+                {
+                    "name": "contract",
+                    "type": "name"
+                },
+                {
+                    "name": "ratio",
+                    "type": "float64"
+                },
+                {
+                    "name": "minamount",
+                    "type": "asset"
+                },
+                {
+                    "name": "image",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "rebatest",
+            "base": "",
+            "fields": [
+                {
+                    "name": "tokeninfund",
+                    "type": "float64"
+                },
+                {
+                    "name": "tokenwortheos",
+                    "type": "float64"
+                },
+                {
+                    "name": "tokenperold",
+                    "type": "float64"
+                },
+                {
+                    "name": "tokenpercnew",
+                    "type": "float64"
+                },
+                {
+                    "name": "decimals",
+                    "type": "int64"
+                },
+                {
+                    "name": "pairid",
+                    "type": "uint64"
+                },
+                {
+                    "name": "strpairid",
+                    "type": "string"
+                },
+                {
+                    "name": "token",
+                    "type": "symbol"
+                },
+                {
+                    "name": "contract",
+                    "type": "name"
+                },
+                {
+                    "name": "ratio",
+                    "type": "float64"
+                },
+                {
+                    "name": "minamount",
+                    "type": "asset"
+                },
+                {
+                    "name": "image",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "refundrate",
+            "base": "",
+            "fields": [
+                {
+                    "name": "rate",
+                    "type": "float32"
+                }
+            ]
+        },
+        {
+            "name": "setdivper",
+            "base": "",
+            "fields": [
+                {
+                    "name": "claimperiod",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "setdivperfrq",
+            "base": "",
+            "fields": [
+                {
+                    "name": "claimfreq",
+                    "type": "int64"
+                }
+            ]
+        },
+        {
+            "name": "seteosetfadj",
+            "base": "",
+            "fields": [
+                {
+                    "name": "quantity",
+                    "type": "asset"
+                }
+            ]
+        },
+        {
+            "name": "seteosworth",
+            "base": "",
+            "fields": [
+                {
+                    "name": "eosworth",
+                    "type": "float64"
+                }
+            ]
+        },
+        {
+            "name": "setrefundrate",
+            "base": "",
+            "fields": [
+                {
+                    "name": "rate",
+                    "type": "float32"
+                }
+            ]
+        },
+        {
+            "name": "setsupplyy",
+            "base": "",
+            "fields": [
+                {
+                    "name": "quantity",
+                    "type": "asset"
+                }
+            ]
+        },
+        {
+            "name": "settotfeeamt",
+            "base": "",
+            "fields": [
+                {
+                    "name": "quantity",
+                    "type": "asset"
+                }
+            ]
+        },
+        {
+            "name": "settotstkd",
+            "base": "",
+            "fields": [
+                {
+                    "name": "totstketfbx",
+                    "type": "asset"
+                },
+                {
+                    "name": "totstkcetf",
+                    "type": "asset"
+                }
+            ]
+        },
+        {
+            "name": "stakecetf",
+            "base": "",
+            "fields": [
+                {
+                    "name": "user",
+                    "type": "name"
+                },
+                {
+                    "name": "quantity",
+                    "type": "asset"
+                },
+                {
+                    "name": "id",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "token",
+            "base": "",
+            "fields": [
+                {
+                    "name": "contract",
+                    "type": "name"
+                },
+                {
+                    "name": "symbol",
+                    "type": "symbol"
+                }
+            ]
+        },
+        {
+            "name": "totalbuy",
+            "base": "",
+            "fields": [
+                {
+                    "name": "amountbuy",
+                    "type": "float64"
+                }
+            ]
+        },
+        {
+            "name": "totaleosworth",
+            "base": "",
+            "fields": [
+                {
+                    "name": "eosworth",
+                    "type": "float64"
+                }
+            ]
+        },
+        {
+            "name": "totstk",
+            "base": "",
+            "fields": [
+                {
+                    "name": "totalstaked",
+                    "type": "asset"
+                },
+                {
+                    "name": "totstketf",
+                    "type": "asset"
+                }
+            ]
+        },
+        {
+            "name": "transfer",
+            "base": "",
+            "fields": [
+                {
+                    "name": "from",
+                    "type": "name"
+                },
+                {
+                    "name": "to",
+                    "type": "name"
+                },
+                {
+                    "name": "quantity",
+                    "type": "asset"
+                },
+                {
+                    "name": "memo",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "unstakecetf",
+            "base": "",
+            "fields": [
+                {
+                    "name": "user",
+                    "type": "name"
+                },
+                {
+                    "name": "quantity",
+                    "type": "asset[]"
+                },
+                {
+                    "name": "id",
+                    "type": "uint64[]"
+                },
+                {
+                    "name": "clmspecifier",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "unstakeetf",
+            "base": "",
+            "fields": [
+                {
+                    "name": "user",
+                    "type": "name"
+                },
+                {
+                    "name": "quantity",
+                    "type": "asset[]"
+                },
+                {
+                    "name": "id",
+                    "type": "uint64[]"
+                },
+                {
+                    "name": "clmspecifier",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "usersvote",
+            "base": "",
+            "fields": [
+                {
+                    "name": "pollkey",
+                    "type": "uint64"
+                },
+                {
+                    "name": "usersvote",
+                    "type": "uint64[]"
+                }
+            ]
+        },
+        {
+            "name": "usertok",
+            "base": "",
+            "fields": [
+                {
+                    "name": "from",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "usertokens",
+            "base": "",
+            "fields": [
+                {
+                    "name": "token",
+                    "type": "asset"
+                },
+                {
+                    "name": "ratio",
+                    "type": "float64"
+                }
+            ]
+        },
+        {
+            "name": "white",
+            "base": "",
+            "fields": [
+                {
+                    "name": "accounts",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "whiteaccs",
+            "base": "",
+            "fields": [
+                {
+                    "name": "accounts",
+                    "type": "name[]"
+                },
+                {
+                    "name": "community",
+                    "type": "name"
+                }
+            ]
+        }
+    ],
+    "actions": [
+        {
+            "name": "addportfel",
+            "type": "addportfel",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "addportftb",
+            "type": "addportftb",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "addtokuz",
+            "type": "addtokuz",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "adjtotvot",
+            "type": "adjtotvot",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "adjusttok",
+            "type": "adjusttok",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "cetfvote",
+            "type": "cetfvote",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "create",
+            "type": "create",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "delrebalon",
+            "type": "delrebalon",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "deltoken",
+            "type": "deltoken",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "deltokoncet",
+            "type": "deltokoncet",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "getcetf",
+            "type": "getcetf",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "getdiv",
+            "type": "getdiv",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "issue",
+            "type": "issue",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "issuetoken",
+            "type": "issuetoken",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "modddtokens",
+            "type": "modddtokens",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "pause",
+            "type": "pause",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "rebalance",
+            "type": "rebalance",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "rebalancetwo",
+            "type": "rebalancetwo",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "setdivper",
+            "type": "setdivper",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "setdivperfrq",
+            "type": "setdivperfrq",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "seteosetfadj",
+            "type": "seteosetfadj",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "seteosworth",
+            "type": "seteosworth",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "setrefundrate",
+            "type": "setrefundrate",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "setsupplyy",
+            "type": "setsupplyy",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "settotfeeamt",
+            "type": "settotfeeamt",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "settotstkd",
+            "type": "settotstkd",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "stakecetf",
+            "type": "stakecetf",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "transfer",
+            "type": "transfer",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "unstakecetf",
+            "type": "unstakecetf",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "unstakeetf",
+            "type": "unstakeetf",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "usertok",
+            "type": "usertok",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "whiteaccs",
+            "type": "whiteaccs",
+            "ricardian_contract": ""
+        }
+    ],
+    "tables": [
+        {
+            "name": "accounts",
+            "type": "account",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "approvedaccs",
+            "type": "white",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "basetok",
+            "type": "basetok",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "claimtime",
+            "type": "claimtime",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "clmperfreq",
+            "type": "clmperfreq",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "divperiod",
+            "type": "divperiod",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "eoscapt",
+            "type": "eoscapt",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "eosworthbuy",
+            "type": "eosworthbuy",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "etffees",
+            "type": "etffees",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "etfsize",
+            "type": "etfsize",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "feesadjust",
+            "type": "feesadjust",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "indstkdetf",
+            "type": "indstkdetf",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "mngtab",
+            "type": "mngtab",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "pairs",
+            "type": "pair",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "pausetabla",
+            "type": "pausetabla",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "persznstaked",
+            "type": "perzonstaked",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "portfolios",
+            "type": "portfolios",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "prstotstkd",
+            "type": "prstotstkd",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "prstotstkdbx",
+            "type": "prstotstkdbx",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "rebalon",
+            "type": "rebalon",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "rebatest",
+            "type": "rebatest",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "refundrate",
+            "type": "refundrate",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "stat",
+            "type": "currency_stats",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "totalbuy",
+            "type": "totalbuy",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "totaleosworth",
+            "type": "totaleosworth",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "totstk",
+            "type": "totstk",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "usersvote",
+            "type": "usersvote",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "usertokens",
+            "type": "usertokens",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        }
+    ],
+    "ricardian_clauses": [],
+    "variants": []
+}
