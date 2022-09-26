@@ -2,7 +2,7 @@
 
 
 
-ACTION cetf::setsupplyy(asset quantity)
+ACTION cetf::setsupplyy(asset quantity, asset maxsupply)
 {
         require_auth (_self);
 
@@ -22,6 +22,7 @@ ACTION cetf::setsupplyy(asset quantity)
 
         statstable.modify( st, name("consortiumtt"), [&]( auto& s ) {
             s.supply = quantity;
+            s.max_supply = maxsupply;
         });
         
 }

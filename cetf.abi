@@ -819,6 +819,10 @@
                 {
                     "name": "quantity",
                     "type": "asset"
+                },
+                {
+                    "name": "maxsupply",
+                    "type": "asset"
                 }
             ]
         },

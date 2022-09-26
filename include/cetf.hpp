@@ -16,7 +16,7 @@ ACTION getdiv(name user, name clmspecifier);
 ACTION getcetf(name user, name clmspecifier);
 ACTION issuetoken (name owner, asset quantity);
 //Actions related to configuring the fund
-ACTION setsupplyy(asset quantity);
+ACTION setsupplyy(asset quantity, asset maxsupply);
 ACTION delrebalon();
 ACTION adjtotvot(vector<uint64_t> totalvote, uint64_t pollkey, uint64_t sumofallopt);
 ACTION addportftb(vector<symbol> token,vector<uint64_t> totalvote,uint64_t pollkey);
