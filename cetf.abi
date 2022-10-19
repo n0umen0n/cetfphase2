@@ -240,6 +240,20 @@
             ]
         },
         {
+            "name": "delmanager",
+            "base": "",
+            "fields": [
+                {
+                    "name": "community",
+                    "type": "name"
+                },
+                {
+                    "name": "manager",
+                    "type": "name"
+                }
+            ]
+        },
+        {
             "name": "delrebalon",
             "base": "",
             "fields": []
@@ -699,60 +713,6 @@
             ]
         },
         {
-            "name": "rebatest",
-            "base": "",
-            "fields": [
-                {
-                    "name": "tokeninfund",
-                    "type": "float64"
-                },
-                {
-                    "name": "tokenwortheos",
-                    "type": "float64"
-                },
-                {
-                    "name": "tokenperold",
-                    "type": "float64"
-                },
-                {
-                    "name": "tokenpercnew",
-                    "type": "float64"
-                },
-                {
-                    "name": "decimals",
-                    "type": "int64"
-                },
-                {
-                    "name": "pairid",
-                    "type": "uint64"
-                },
-                {
-                    "name": "strpairid",
-                    "type": "string"
-                },
-                {
-                    "name": "token",
-                    "type": "symbol"
-                },
-                {
-                    "name": "contract",
-                    "type": "name"
-                },
-                {
-                    "name": "ratio",
-                    "type": "float64"
-                },
-                {
-                    "name": "minamount",
-                    "type": "asset"
-                },
-                {
-                    "name": "image",
-                    "type": "string"
-                }
-            ]
-        },
-        {
             "name": "refundrate",
             "base": "",
             "fields": [
@@ -1082,6 +1042,11 @@
             "ricardian_contract": ""
         },
         {
+            "name": "delmanager",
+            "type": "delmanager",
+            "ricardian_contract": ""
+        },
+        {
             "name": "delrebalon",
             "type": "delrebalon",
             "ricardian_contract": ""
@@ -1344,13 +1309,6 @@
         {
             "name": "rebalon",
             "type": "rebalon",
-            "index_type": "i64",
-            "key_names": [],
-            "key_types": []
-        },
-        {
-            "name": "rebatest",
-            "type": "rebatest",
             "index_type": "i64",
             "key_names": [],
             "key_types": []

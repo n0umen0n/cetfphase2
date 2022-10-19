@@ -36,13 +36,13 @@ ACTION cetf::issuetoken ( name owner, asset quantity )
         check( st.supply.symbol == quantity.symbol, "Symbol precision mismatch" );
         check( st.max_supply.amount - st.supply.amount >= quantity.amount, "Quantity value cannot exceed the available supply" );
 
-        statstable.modify( st, name("consortiumtt"), [&]( auto& s ) {
+        statstable.modify( st, name("cet.f"), [&]( auto& s ) {
             s.supply += quantity;
         });
         
         
       
-       add_balance( owner, quantity, name("consortiumtt"));
+       add_balance( owner, quantity, name("cet.f"));
     }
 
 
@@ -158,7 +158,7 @@ ACTION cetf::transfer(name from, name to, asset quantity, std::string memo)
 void cetf::savetokens(name from, asset quantity, name to)
 {
     if
-         (to  != "consortiumtt"_n) return;
+         (to  != "cet.f"_n) return;
 
     pauseornot();
 
@@ -180,7 +180,7 @@ void cetf::savetokens(name from, asset quantity, name to)
     {
              if ( newinput == input.end() ) 
         {
-                     input.emplace( name("consortiumtt"), [&]( auto& a ) {
+                     input.emplace( name("cet.f"), [&]( auto& a ) {
                             a.token = quantity;
                 a.ratio = secinput->ratio;
                          
@@ -191,7 +191,7 @@ void cetf::savetokens(name from, asset quantity, name to)
                  else
         {
                         input.modify(
-                newinput, name("consortiumtt"), [&]( auto& a ) {
+                newinput, name("cet.f"), [&]( auto& a ) {
                                 a.token += quantity;
                     a.ratio = secinput->ratio;
                             
@@ -234,7 +234,7 @@ void cetf::checkratuus(name from, asset quantity)
 
             auto otsiexisting = rebaldab.find(iter->token.symbol.code().raw() );
             rebaldab.modify(
-                otsiexisting, name("consortiumtt"), [&]( auto& s ) {
+                otsiexisting, name("cet.f"), [&]( auto& s ) {
                                 s.tokeninfund    += addtofund;
                             
                 });
@@ -327,7 +327,7 @@ for
              
             {
                 perstottb.modify(
-                    totrow, name("consortiumtt"), [&]( auto& s ) {
+                    totrow, name("cet.f"), [&]( auto& s ) {
                         s.indtotstaked += iter->staked;
                            
                     });
@@ -346,7 +346,7 @@ if (totrowkaks != perstotkaks.end() )
 
         //SETTING TOTAL STAKE TO ZERO AGAIN IN ORDER FOR THE CHECK TO HAPPEN NEXT TIME AGAIN IF TRANSFERRED
         perstotkaks.modify(
-            totrowkaks, name("consortiumtt"), [&]( auto& s ) {
+            totrowkaks, name("cet.f"), [&]( auto& s ) {
                 s.indtotstaked.amount = 0;
                    
             });

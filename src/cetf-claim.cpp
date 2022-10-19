@@ -43,7 +43,7 @@ ACTION cetf::getdiv(name user, name clmspecifier)
              
             {
                 perstottb.modify(
-                    totrow, name("consortiumtt"), [&]( auto& s ) {
+                    totrow, name("cet.f"), [&]( auto& s ) {
                         s.indtotstaked += iter->staked;
                            
                     });
@@ -89,7 +89,7 @@ if (divperiter.periodstart + divperfrqit.periodfreq > current_time_point()) {
             check(claimiter.claimperiod != divperiter.claimperiod, "New period not started yet.");
 
             claimtab.modify(
-                claimrow, name("consortiumtt"), [&]( auto& s ) {
+                claimrow, name("cet.f"), [&]( auto& s ) {
                     s.claimperiod = divperiter.claimperiod;
                        
                 });
@@ -124,7 +124,7 @@ else {
          
         {
             claimtab.modify(
-                claimrow, name("consortiumtt"), [&]( auto& s ) {
+                claimrow, name("cet.f"), [&]( auto& s ) {
                     s.claimperiod = divperiter.claimperiod;
                        
                 });
@@ -163,7 +163,7 @@ check(feeitr.totalfees.amount >= 0, "Total fees to be distr fell below 0.");
 //THIS IS TABLE THAT TRACKS HOW MUCH INDIVIDUAL HAS STAKED.
 auto totalrow = indtotstk.find(user.value);
 indtotstk.modify(
-    totalrow, name("consortiumtt"), [&]( auto& s ) {
+    totalrow, name("cet.f"), [&]( auto& s ) {
         s.indtotstaked.amount = 0;
            
     });
@@ -207,7 +207,7 @@ ACTION cetf::getcetf(name user, name clmspecifier)
              
             {
                 perstottb.modify(
-                    totrow, name("consortiumtt"), [&]( auto& s ) {
+                    totrow, name("cet.f"), [&]( auto& s ) {
                         s.indtotstaked += iter->staked;
                            
                     });
@@ -254,7 +254,7 @@ if (divperiter.periodstart + divperfrqit.periodfreq > current_time_point()) {
             check(claimiter.claimperiod != divperiter.claimperiod, "New period not started yet.");
 
             claimtab.modify(
-                claimrow, name("consortiumtt"), [&]( auto& s ) {
+                claimrow, name("cet.f"), [&]( auto& s ) {
                     s.claimperiod = divperiter.claimperiod;
                        
                 });
@@ -301,7 +301,7 @@ else {
          
         {
             claimtab.modify(
-                claimrow, name("consortiumtt"), [&]( auto& s ) {
+                claimrow, name("cet.f"), [&]( auto& s ) {
                     s.claimperiod = divperiter.claimperiod;
                        
                 });
@@ -332,7 +332,7 @@ else {
 
 auto totalrow = perstottb.find(user.value);
 perstottb.modify(
-    totalrow, name("consortiumtt"), [&]( auto& s ) {
+    totalrow, name("cet.f"), [&]( auto& s ) {
         s.indtotstaked.amount = 0;
            
     });

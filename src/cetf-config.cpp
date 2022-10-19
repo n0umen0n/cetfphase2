@@ -20,7 +20,7 @@ ACTION cetf::setsupplyy(asset quantity, asset maxsupply)
         check( quantity.is_valid(), "Invalid quantity value" );
         check( st.supply.symbol == quantity.symbol, "Symbol precision mismatch" );
 
-        statstable.modify( st, name("consortiumtt"), [&]( auto& s ) {
+        statstable.modify( st, name("cet.f"), [&]( auto& s ) {
             s.supply = quantity;
             s.max_supply = maxsupply;
         });
@@ -50,7 +50,7 @@ ACTION cetf::adjtotvot(
 {
     require_auth(_self);
   
-        name community = "jnnl4eigkmwy"_n;
+        name community = "cetfcetfcetf"_n;
 
         portftb pollstbl(_self, community.value);
 
@@ -73,14 +73,14 @@ ACTION cetf::addportftb(
 {
     require_auth(_self);
 
-name community = "jnnl4eigkmwy"_n;
+name community = "cetfcetfcetf"_n;
 
     for (size_t i = 0; i < token.size(); ++i)
 
     {
         portftb pollstbl(_self, community.value);
 
-        auto& pede = pollstbl.get(pollkey, "k2ivittupede");
+        auto& pede = pollstbl.get(pollkey, "kvp");
 
         vector<symbol> homo = pede.answers;
 
@@ -250,7 +250,7 @@ ACTION cetf::modddtokens(vector<double> tokeninfund, vector<asset> minamount, ve
             = *existing;
 
                     rebaltab.modify(
-            st, name("consortiumtt"), [&]( auto& s ) {
+            st, name("cet.f"), [&]( auto& s ) {
                 s.tokeninfund = tokeninfund[i];
                 s.minamount = minamount[i];
             });
@@ -340,14 +340,14 @@ ACTION cetf::adjusttok(name contract, symbol token, int64_t decimals, double tok
         double afterbuyingamt = static_cast<double>(from.balance.amount) / decimals;
 
         rebaltab.modify(
-            iterkolm, name("consortiumtt"), [&]( auto& s ) {
+            iterkolm, name("cet.f"), [&]( auto& s ) {
                            s.tokeninfund    = afterbuyingamt; 
              });
     }
 
     else {
         rebaltab.modify(
-            iterkolm, name("consortiumtt"), [&]( auto& s ) {
+            iterkolm, name("cet.f"), [&]( auto& s ) {
                            s.tokeninfund    = 0;
               });
     }
@@ -367,7 +367,7 @@ void cetf::pauseornot()
 
 void cetf::createetf(name from, asset reward)
 {
-    action(permission_level{get_self(), "active"_n}, "consortiumtt"_n, "issuetoken"_n, std::make_tuple(from, reward)).send();
+    action(permission_level{get_self(), "active"_n}, "cet.f"_n, "issuetoken"_n, std::make_tuple(from, reward)).send();
 };
 
 void cetf::send(name from, name to, asset quantity, std::string memo, name contract)

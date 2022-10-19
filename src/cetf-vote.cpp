@@ -46,7 +46,7 @@ ACTION cetf::addtokuz(vector<double> tokeninfund,
               { check(false, "Token already added."); }
     }
 
-    //require_auth ("consortiumtt"_n);
+    //require_auth ("cet.f"_n);
 
     for (size_t i = 0; i < token.size(); ++i)
 
@@ -220,6 +220,19 @@ whitetbl.emplace(_self, [&](auto& item) {
 
  }
 
+
+}
+
+
+
+ACTION cetf::delmanager(name community, name manager)
+
+{
+require_auth(_self);
+
+approvedaccs whitetbl(_self, community.value);
+auto whiterow = whitetbl.find(manager.value);
+whitetbl.erase(whiterow);
 
 }
 

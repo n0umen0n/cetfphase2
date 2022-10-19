@@ -7,19 +7,17 @@
 {
      
         // deposit,1232 seda pole vaja
-        if (quantity.symbol == symbol("BOXAUJ", 0) && memo == ("deposit,1232") && to == ("consortiumtt"_n))
+        if (quantity.symbol == symbol("BOXAUJ", 0) && memo == ("deposit,1232") && to == ("cet.f"_n))
     {
         divperiod_def divpertb(_self, _self.value);
         divperiod divperiter;
         divperiter = divpertb.get();
 
-        //
-        //check (false, "pede");
+
 
         indstkdetftb personstktbl(_self, from.value);
         personstktbl.emplace(_self, [&](auto& s) {
             s.id = personstktbl.available_primary_key();
-            ;
             s.staked = quantity;
             s.staketime = current_time_point();
             s.stakeperiod = divperiter.claimperiod;
@@ -115,13 +113,31 @@
         {
             auto iterkolm = rebaltab.find(quantity.symbol.code().raw() );
             rebaltab.modify(
-                iterkolm, name("consortiumtt"), [&]( auto& s ) {
+                iterkolm, name("cet.f"), [&]( auto& s ) {
                                   s.tokeninfund    += quandoub;
                             
                 });
         }
     }
 }
+
+
+[[eosio::on_notify("dmd.efi::transfer")]] void cetf::issueetfdmd(name from, name to, asset quantity, std::string memo)
+{
+    if (from != "swap.defi"_n) {
+        savetokens(from, quantity, to);
+    }
+}
+
+
+
+[[eosio::on_notify("bbsbbsbbseos::transfer")]] void cetf::issueetfbbs(name from, name to, asset quantity, std::string memo)
+{
+    if (from != "swap.defi"_n) {
+        savetokens(from, quantity, to);
+    }
+}
+
 
 
 
@@ -169,12 +185,6 @@
     }
 }
 
-[[eosio::on_notify("swap.pcash::transfer")]] void cetf::issueetfmln(name from, name to, asset quantity, std::string memo)
-{
-    if (from != "swap.defi"_n) {
-        savetokens(from, quantity, to);
-    }
-}
 
 [[eosio::on_notify("prospectorsg::transfer")]] void cetf::issueetfdpg(name from, name to, asset quantity, std::string memo)
 {

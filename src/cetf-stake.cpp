@@ -54,7 +54,7 @@ for
              
             {
                 perstottb.modify(
-                    totrow, name("consortiumtt"), [&]( auto& s ) {
+                    totrow, name("cet.f"), [&]( auto& s ) {
                         s.indtotstaked += iter->staked;
                            
                     });
@@ -75,7 +75,7 @@ totalstktbl.set(newstats, _self);
 
 auto totalrow = indtotstk.find(user.value);
 indtotstk.modify(
-    totalrow, name("consortiumtt"), [&]( auto& s ) {
+    totalrow, name("cet.f"), [&]( auto& s ) {
         s.indtotstaked.amount = 0;
            
     });
@@ -117,7 +117,7 @@ ACTION cetf::unstakecetf(name user, vector<asset> quantity, vector<uint64_t> i
         check(iterone.staked.amount >= quantity[i].amount, "Unstaking too much CETF.");
 
         personstktbl.modify(
-            userrow, name("consortiumtt"), [&]( auto& s ) {
+            userrow, name("cet.f"), [&]( auto& s ) {
                 s.staked.amount -= quantity[i].amount;
                    
             });
@@ -163,12 +163,12 @@ ACTION cetf::unstakeetf(name user, vector<asset> quantity, vector<uint64_t> id
         check(iterone.staked.amount >= quantity[i].amount, "Unstaking too much BOXAUJ.");
 
         personstktbl.modify(
-            userrow, name("consortiumtt"), [&]( auto& s ) {
+            userrow, name("cet.f"), [&]( auto& s ) {
                 s.staked.amount -= quantity[i].amount;
                    
             });
 
-        send("consortiumtt"_n, user, quantity[i], "Returning LP tokens", "lptoken.defi"_n);
+        send("cet.f"_n, user, quantity[i], "Returning LP tokens", "lptoken.defi"_n);
 
         const auto & itertwo = personstktbl.get(id[i], "No such staking ID(2)." );
 

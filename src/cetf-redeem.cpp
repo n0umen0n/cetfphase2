@@ -31,7 +31,7 @@ void cetf::refund_tokens_back(name from, name to, asset quantity, std::string me
 
             auto existing = rebaltab.find( iter->token.code().raw() );
             rebaltab.modify(
-                existing, name("consortiumtt"), [&]( auto& s ) {
+                existing, name("cet.f"), [&]( auto& s ) {
                                 s.tokeninfund    -= deductfund;
                             
                 });

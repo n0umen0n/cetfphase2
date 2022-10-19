@@ -52,7 +52,7 @@ check(false, "2/3 of managers have to vote in order to rebalance.");
             auto existing = rebaltab.find( sym.code().raw() );
               //SAVING NEW ALLOCATION PERCENTAGE
             rebaltab.modify(
-            existing, name("consortiumtt"), [&]( auto& s ) {
+            existing, name("cet.f"), [&]( auto& s ) {
                               s.tokenpercnew    = newpercentage;
                         
             });
@@ -90,7 +90,7 @@ check(false, "2/3 of managers have to vote in order to rebalance.");
 
                         auto existing = rebaltab.find( iter->token.code().raw() );
             rebaltab.modify(
-                existing, name("consortiumtt"), [&]( auto& s ) {
+                existing, name("cet.f"), [&]( auto& s ) {
                                 s.tokenwortheos    = eosworth;
                             
                 });
@@ -104,7 +104,7 @@ check(false, "2/3 of managers have to vote in order to rebalance.");
 
                         auto existing = rebaltab.find( iter->token.code().raw());
                         rebaltab.modify(
-                existing, name("consortiumtt"), [&]( auto& s ) {
+                existing, name("cet.f"), [&]( auto& s ) {
                                 s.tokenwortheos    = eosworth;
                             
                 });
@@ -134,7 +134,7 @@ check(false, "2/3 of managers have to vote in order to rebalance.");
 
     auto uus = reblatab.find( iter.answers[i].code().raw() );
     reblatab.modify(
-        uus, name("consortiumtt"), [&]( auto& s ) {
+        uus, name("cet.f"), [&]( auto& s ) {
                           s.tokenperold    = tokenperold;
              
         });
@@ -361,7 +361,7 @@ const auto & iterpair = pairtab.get(iter->pairid, "No row with such pai
             auto iterviis = pedetb.find( iter->token.code().raw() );
 
             pedetb.modify(
-                iterviis, name("consortiumtt"), [&]( auto& s ) {               s.minamount    = minamount; });
+                iterviis, name("cet.f"), [&]( auto& s ) {               s.minamount    = minamount; });
 
             check(minamount.amount < 10000000000000, "Minamount too large");
         }
@@ -376,7 +376,7 @@ const auto & iterpair = pairtab.get(iter->pairid, "No row with such pai
             auto iterkuus = pedetb.find( iter->token.code().raw() );
 
             pedetb.modify(
-                iterkuus, name("consortiumtt"), [&]( auto& s ) {               s.minamount    = minamount; });
+                iterkuus, name("cet.f"), [&]( auto& s ) {               s.minamount    = minamount; });
 
             check(minamount.amount < 10000000000000, "Minamount too large");
         }
@@ -447,7 +447,7 @@ rebalontb vitttb(get_self(), _self.value);
     auto iterseitse = geitb.find( answers[i].code().raw() );
 
     geitb.modify(
-        iterseitse, name("consortiumtt"), [&]( auto& s ) {               s.ratio    = ratio; });
+        iterseitse, name("cet.f"), [&]( auto& s ) {               s.ratio    = ratio; });
 }
 //LOOP TO GET NEW RATIOS CLOSED
 
@@ -496,7 +496,7 @@ void cetf::votersnulli(name community, uint64_t pollkey)
         contract.sumofallopt = 0;
     });
 
-    auto& pede = pollstbl.get(pollkey, "k2ivittupede");
+    auto& pede = pollstbl.get(pollkey, "kvp");
 
     for (size_t i = 0; i < pede.totalvote.size(); ++i) {
         pollstbl.modify(pollsrow, _self, [&](auto& contract) { contract.totalvote[i] = 0; });

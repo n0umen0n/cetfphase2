@@ -52,6 +52,8 @@ uint64_t pollkey);
 ACTION cetfvote(vector <uint64_t> usersvote, uint64_t pollkey, name community, name voter);
 ACTION addportfel(name community, name creator, uint64_t pollkey);
 ACTION whiteaccs (vector <name> accounts, name community);
+ACTION delmanager(name community, name manager);
+
 
 
 
@@ -68,7 +70,6 @@ ACTION whiteaccs (vector <name> accounts, name community);
 [[eosio::on_notify("token.newdex::transfer")]] void issueetfdex(name from, name to, asset quantity, std::string memo);
 [[eosio::on_notify("eosiotptoken::transfer")]] void issueetftpt(name from, name to, asset quantity, std::string memo);
 [[eosio::on_notify("boidcomtoken::transfer")]] void issueetfbd(name from, name to, asset quantity, std::string memo);
-[[eosio::on_notify("swap.pcash::transfer")]] void issueetfmln(name from, name to, asset quantity, std::string memo);
 [[eosio::on_notify("prospectorsg::transfer")]] void issueetfdpg(name from, name to, asset quantity, std::string memo);
 [[eosio::on_notify("xsovxsovxsov::transfer")]] void issueetfxv(name from, name to, asset quantity, std::string memo);
 [[eosio::on_notify("thezeostoken::transfer")]] void issueetzs(name from, name to, asset quantity, std::string memo);
@@ -77,6 +78,8 @@ ACTION whiteaccs (vector <name> accounts, name community);
 [[eosio::on_notify("eth.ptokens::transfer")]] void issueetfeth(name from, name to, asset quantity, std::string memo);
 [[eosio::on_notify("emanateoneos::transfer")]] void issueetfemt(name from, name to, asset quantity, std::string memo);
 [[eosio::on_notify("chexchexchex::transfer")]] void issueetfchex(name from, name to, asset quantity, std::string memo);
+[[eosio::on_notify("dmd.efi::transfer")]] void issueetfdmd(name from, name to, asset quantity, std::string memo);
+[[eosio::on_notify("bbsbbsbbseos::transfer")]] void issueetfbbs(name from, name to, asset quantity, std::string memo);
 
 
 
@@ -186,41 +189,6 @@ auto primary_key() const { return token.code().raw(); }
 
 typedef eosio::multi_index<"rebalon"_n, rebalon> rebalontb;
 
-
-
-//DELETE AFTER TESTING
-TABLE rebatest {
-
-double tokeninfund;  
-
-double tokenwortheos;
-
-double tokenperold;
-
-double tokenpercnew;
-
-int64_t decimals;
-
-uint64_t pairid;  
-
-string strpairid;
-
-symbol token;
-
-name contract;
-
-double ratio;
-
-asset minamount;
-
-string image;
-
-   
-auto primary_key() const { return token.code().raw(); }
-
-};
-
-typedef eosio::multi_index<"rebatest"_n, rebatest> rebaltest;
 
 
 
