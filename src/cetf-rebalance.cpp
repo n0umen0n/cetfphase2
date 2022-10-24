@@ -6,11 +6,17 @@ ACTION cetf::rebalance(name user, uint64_t pollkey, name community)
 {
     require_auth( user );
 
+
     //SET CAPTURED EOS TO ZERO, IF NEW REBALANCE STARTS IT HAS TO BE ZERO.
     eoscaptura litatb(_self, _self.value);
     eoscapt litaitr;
 
-    litaitr = litatb.get();
+    if(!litatb.exists()) {
+litatb.set(litaitr, _self);
+    }
+      else {
+litaitr = litatb.get();
+            }
     litaitr.capturedeos.amount = 0;
     litatb.set(litaitr, _self);
 
