@@ -138,6 +138,7 @@ ACTION cetf::transfer(name from, name to, asset quantity, std::string memo)
         feeitr.adjustcrtclm.amount += (quantity.amount * (1 - soloiter.rate));
         etffeestb.set(feeitr, _self);
 
+
         int64_t intadjquan = static_cast<double>(quantity.amount) * soloiter.rate;
 
         struct asset adjquantity = {int64_t(intadjquan), symbol("EOSETF", 4)};
@@ -253,7 +254,7 @@ void cetf::checkratuus(name from, asset quantity)
 
         feesadjust_def etffeestb(_self, _self.value);
         feesadjust feeitr;
-        etffeestb.set(feeitr, _self);
+        feeitr = etffeestb.get();
 
         refundratetb eostable(_self, _self.value);
         refundrate soloiter;
@@ -262,8 +263,10 @@ void cetf::checkratuus(name from, asset quantity)
         //struct asset numberofetfs = {int64_t ((basetokrow->token.amount/iteraator->minamount.amount)*10000), symbol ("EOSETF", 4)};
         struct asset numberofetfs = {int64_t((basetokrow->token.amount / iteraator->minamount.amount * (soloiter.rate)) * 10000), symbol("EOSETF", 4)};
 
+        struct asset addtocrtclm = {int64_t((basetokrow->token.amount / iteraator->minamount.amount * (1 - soloiter.rate)) * 10000), symbol("EOSETF", 4)};
+
         //ADD TO THE SINGLETON THAT CALCULATES HOW MUCH FEE WAS ACCUMULATED DURING A PERIOD
-        feeitr.adjustcrtclm.amount += numberofetfs.amount * (1 - soloiter.rate);
+        feeitr.adjustcrtclm.amount += addtocrtclm.amount;
         etffeestb.set(feeitr, _self);
 
         //ISSUE ETF
