@@ -321,37 +321,85 @@ ACTION cetf::pause(bool ispaused)
 }
 
 
-
-//SAVES NEW TOKEN BALANCE (USED IN NEXT REBALANCING)
-ACTION cetf::adjusttok(name contract, symbol token, int64_t decimals, double tokenpercnew)
+ACTION cetf::newratiof(symbol answers)
 {
-    require_auth(_self);
+    require_auth(_self);
 
-    //KUI KÕIK SOLD SIIS TA FJUKOF KUNA SEE L2heb nulli ehk siis ei saa querida midagi.
+    //KUI KÕIK SOLD SIIS TA FJUKOF KUNA SEE L2heb nulli ehk siis ei saa querida midagi.
 
-    rebalontb rebaltab(get_self(), _self.value);
-    auto iterkolm = rebaltab.find( token.code().raw() );
+    rebalontb geitb(get_self(), _self.value);
 
-    if (tokenpercnew != 0) {
-        accounts from_acnts(contract, _self.value);
-        const auto& from = from_acnts.get(token.code().raw(), "Fjukof");
+    const auto & rebaliter = geitb.get(answers.code().raw(), "No token with such symbol." );
 
-        //NO need for double actually, UINT would be more precise.
-        double afterbuyingamt = static_cast<double>(from.balance.amount) / decimals;
+    basetoktab basetable(_self, _self.value);
+    basetok baseiter;
 
-        rebaltab.modify(
-            iterkolm, name("cet.f"), [&]( auto& s ) {
-                           s.tokeninfund    = afterbuyingamt; 
-             });
-    }
+    baseiter = basetable.get();
 
-    else {
-        rebaltab.modify(
-            iterkolm, name("cet.f"), [&]( auto& s ) {
-                           s.tokeninfund    = 0;
-              });
-    }
+    const auto & itrbase = geitb.get(baseiter.base.code().raw(), "No token with such symbol." );
+
+    double ratio = static_cast<double>(rebaliter.minamount.amount) / itrbase.minamount.amount;
+
+    auto iterseitse = geitb.find( answers.code().raw() );
+
+    geitb.modify(
+        iterseitse, name("cet.f"), [&]( auto& s ) {               s.ratio    = ratio; });
+
 }
+
+
+
+
+//SAVES NEW TOKEN BALANCE (USED IN NEXT REBALANCING)
+ACTION cetf::adjusttok(name contract, symbol token, int64_t decimals, double tokenpercnew)
+{
+    require_auth(_self);
+
+    //KUI KÕIK SOLD SIIS TA FJUKOF KUNA SEE L2heb nulli ehk siis ei saa querida midagi.
+
+    rebalontb rebaltab(get_self(), _self.value);
+    auto iterkolm = rebaltab.find( token.code().raw() );
+
+
+    auto symbs = symbol("EOSETF", 4);
+    stats statstable( _self, symbs.code().raw() ); 
+    auto existing = statstable.find( symbs.code().raw() );
+
+    
+
+    if (tokenpercnew != 0) {
+        accounts from_acnts(contract, _self.value);
+        const auto& from = from_acnts.get(token.code().raw(), "Fjukof");
+
+        double afterbuyingamt = static_cast<double>(from.balance.amount) / decimals;
+
+
+        struct asset minamount = {int64_t (decimals * (static_cast<double>(from.balance.amount) / decimals)  / (static_cast<double>(existing->supply.amount) / 10000)  ), token};
+
+
+        rebaltab.modify(
+            iterkolm, name("cet.f"), [&]( auto& s ) {
+                           s.tokeninfund    = afterbuyingamt; 
+                           s.minamount    = minamount; 
+
+             });
+    }
+
+
+    else {
+
+            struct asset zero = {int64_t (0), token};
+
+        rebaltab.modify(
+            iterkolm, name("cet.f"), [&]( auto& s ) {
+                           s.tokeninfund    = 0;
+                           s.minamount    = zero;
+             
+              });
+    }
+}
+
+
 
 
 //Private function that checks whether creation and redemption of EOESETF is currently halted.
@@ -365,11 +413,18 @@ void cetf::pauseornot()
     check(iter.ispaused, "Creation and redemption is currently halted.");
 }
 
-void cetf::createetf(name from, asset reward)
+void cetf::createetf(name from, asset touser, asset tosupply)
 {
-    action(permission_level{get_self(), "active"_n}, "cet.f"_n, "issuetoken"_n, std::make_tuple(from, reward)).send();
+    action(permission_level{get_self(), "active"_n}, "cet.f"_n, "issuetoken"_n, std::make_tuple(from, touser, tosupply)).send();
 };
-
+void cetf::creatediv(name from, asset div)
+{
+    action(permission_level{get_self(), "active"_n}, "cet.f"_n, "transferdiv"_n, std::make_tuple(from, div)).send();
+};
+void cetf::newratio(symbol answers)
+{
+    action(permission_level{get_self(), "active"_n}, _self, "newratiof"_n, std::make_tuple(answers)).send();
+};
 void cetf::send(name from, name to, asset quantity, std::string memo, name contract)
 {
     action(permission_level{get_self(), "active"_n}, contract, "transfer"_n, std::make_tuple(from, to, quantity, memo)).send();

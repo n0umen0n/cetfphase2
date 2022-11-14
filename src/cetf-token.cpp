@@ -15,36 +15,42 @@ using namespace eosio;
 
 
 
-ACTION cetf::issuetoken ( name owner, asset quantity )
-    {
-        require_auth (_self);
-        require_recipient( owner );
+ACTION cetf::issuetoken ( name owner, asset touser, asset tosupply )
+    {
+        require_auth (_self);
+        require_recipient( owner );
 
-        
-        auto sym = quantity.symbol;
-        check( sym.is_valid(), "Invalid symbol name" );
+        
+        auto sym = tosupply.symbol;
+        check( sym.is_valid(), "Invalid symbol name" );
 
-        auto sym_code_raw = sym.code().raw();
+        auto sym_code_raw = sym.code().raw();
 
-        stats statstable( _self, sym_code_raw );
-        auto existing = statstable.find( sym_code_raw );
-        check( existing != statstable.end(), "Token with that symbol name does not exist - Please create the token before issuing" );
+        stats statstable( _self, sym_code_raw );
+        auto existing = statstable.find( sym_code_raw );
+        check( existing != statstable.end(), "Token with that symbol name does not exist - Please create the token before issuing" );
 
-        const auto& st = *existing;
-        
-        check( quantity.is_valid(), "Invalid quantity value" );
-        check( st.supply.symbol == quantity.symbol, "Symbol precision mismatch" );
-        check( st.max_supply.amount - st.supply.amount >= quantity.amount, "Quantity value cannot exceed the available supply" );
+        const auto& st = *existing;
+        
+        check( tosupply.is_valid(), "Invalid quantity value" );
+        check( st.supply.symbol == tosupply.symbol, "Symbol precision mismatch" );
+        check( st.max_supply.amount - st.supply.amount >= tosupply.amount, "Quantity value cannot exceed the available supply" );
 
-        statstable.modify( st, name("cet.f"), [&]( auto& s ) {
-            s.supply += quantity;
-        });
-        
-        
-      
-       add_balance( owner, quantity, name("cet.f"));
-    }
+        statstable.modify( st, name("cet.f"), [&]( auto& s ) {
+            s.supply += tosupply;
+        });
+        
+        
+       add_balance( owner, touser, name("cet.f"));
+    }
 
+ACTION cetf::transferdiv ( name owner, asset div )
+    {
+        require_auth (_self);
+        require_recipient( owner );
+        
+       add_balance( owner, div, name("cet.f"));
+    }
 
 ACTION cetf::create(const name& issuer, const asset& maximum_supply)
 {
@@ -261,17 +267,17 @@ void cetf::checkratuus(name from, asset quantity)
         soloiter = eostable.get();
 
         //struct asset numberofetfs = {int64_t ((basetokrow->token.amount/iteraator->minamount.amount)*10000), symbol ("EOSETF", 4)};
-        struct asset numberofetfs = {int64_t((basetokrow->token.amount / iteraator->minamount.amount * (soloiter.rate)) * 10000), symbol("EOSETF", 4)};
+        struct asset numberofetfs = {int64_t((basetokrow->token.amount / iteraator->minamount.amount * (soloiter.rate)) * 10000), symbol("EOSETF", 4)};
 
-        struct asset addtocrtclm = {int64_t((basetokrow->token.amount / iteraator->minamount.amount * (1 - soloiter.rate)) * 10000), symbol("EOSETF", 4)};
+        struct asset addtocrtclm = {int64_t((basetokrow->token.amount / iteraator->minamount.amount * (1 - soloiter.rate)) * 10000), symbol("EOSETF", 4)};
 
+        struct asset addsupply = {int64_t(numberofetfs.amount + addtocrtclm.amount), symbol("EOSETF", 4)};
         //ADD TO THE SINGLETON THAT CALCULATES HOW MUCH FEE WAS ACCUMULATED DURING A PERIOD
         feeitr.adjustcrtclm.amount += addtocrtclm.amount;
         etffeestb.set(feeitr, _self);
 
         //ISSUE ETF
-        createetf(from, numberofetfs);
-
+         createetf(from, numberofetfs, addsupply);
         /* ADD IN CASE WANT TO REWARD USERS FOR CREATING EOSETF
 auto sym = symbol ("CETF", 4);
 

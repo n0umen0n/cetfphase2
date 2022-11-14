@@ -99,7 +99,7 @@ if (divperiter.periodstart + divperfrqit.periodfreq > current_time_point()) {
 
     struct asset divs = {int64_t(divsint), symbol("EOSETF", 4)};
 
-    createetf(user, divs);
+    creatediv(user, divs);
 
     //ADJUSTCRTCLM ADJUSTS TOTAL FEES WHEN NEW PERIOD STARTS.NUMBER IS POSITIVE IF MORE WAS CREATED EOSETF THAT CLAIMED.
     feeitradj.adjustcrtclm.amount -= divs.amount;
@@ -138,7 +138,7 @@ else {
     double divsint = (feeitr.totalfees.amount * percgets);
     struct asset divs = {int64_t (divsint), symbol ("EOSETF", 4)};
 
-    createetf(user, divs);
+    creatediv(user, divs);
 
     //ADJUSTCRTCLM ADJUSTS TOTAL FEES WHEN NEW PERIOD STARTS.NUMBER IS POSITIVE IF MORE WAS CREATED EOSETF THAT CLAIMED.
     //feeitradj = etffeestbadj.get();
@@ -280,7 +280,7 @@ if (divperiter.periodstart + divperfrqit.periodfreq > current_time_point()) {
 
     struct asset cetfreward = {int64_t(adjrewardint * 10000), symbol("CETF", 4)};
 
-    createetf(user, cetfreward);
+    createetf(user, cetfreward, cetfreward);
 }
 
 //TRIGGERING START OF A NEW PERIOD
@@ -327,7 +327,7 @@ else {
 
     struct asset cetfreward = {int64_t(adjrewardint * 10000), symbol("CETF", 4)};
 
-    createetf(user, cetfreward);
+    createetf(user, cetfreward, cetfreward);
 }
 
 auto totalrow = perstottb.find(user.value);

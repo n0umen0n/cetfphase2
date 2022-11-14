@@ -322,73 +322,7 @@ ACTION cetf::rebalancetwo(vector<symbol> answers)
             }
     }  //END LOOP THAT BUYS FROM DEFIBOX
 
-    rebalontb pedetb(get_self(), _self.value);
-    //LOOP TO GET MIN AMOUNTS OF TOKENS TO CREATE EOSETF
-    for (auto iter = pedetb.begin(); iter != pedetb.end(); iter++)
-{
-    const auto & rebaliter = pedetb.get(iter->token.code().raw(), "No pairid for such symbol" );
-
-    pairs pairtab("swap.defi"_n, "swap.defi"_n.value);
-
-
-/*
-    pairs pairtab("swap.defi"_n, "swap.defi"_n.value);
-    const auto & etfpair = pairtab.get(1232, "No row with such pairid" );
-*/
-
-    totleostab eostable(_self, _self.value);
-    totaleosworth eositer;
-    eositer = eostable.get();
-
-    auto symbs = symbol("EOSETF", 4);
-
-    stats statstable( _self, symbs.code().raw() ); 
-    auto existing = statstable.find( symbs.code().raw() );
-
-    double oneetfineos = (eositer.eosworth * 10000) / existing->supply.amount;
-
-//check (false, 10000 * oneetfineos);
- 
-
-    //GET HOW MUCH EOS WORTH SHOULD THAT TOKEN HAVE
-    //double mineostokworth = iter->tokenpercnew * etfpair.price1_last;
-
-double mineostokworth = iter->tokenpercnew * oneetfineos;
-
-const auto & iterpair = pairtab.get(iter->pairid, "No row with such pairid" );
-
-    if
-         (iterpair.reserve0.symbol == iter->token) 
-        {
-            double mintokenamt = mineostokworth / iterpair.price0_last;
-
-            struct asset minamount = {int64_t (rebaliter.decimals * mintokenamt), rebaliter.token};
-
-            auto iterviis = pedetb.find( iter->token.code().raw() );
-
-            pedetb.modify(
-                iterviis, name("cet.f"), [&]( auto& s ) {               s.minamount    = minamount; });
-
-            check(minamount.amount < 10000000000000, "Minamount too large");
-        }
-
-    if
-         (iterpair.reserve1.symbol == iter->token) 
-        {
-            double mintokenamt = mineostokworth / iterpair.price1_last;
-
-            struct asset minamount = {int64_t (rebaliter.decimals * mintokenamt), rebaliter.token};
-
-            auto iterkuus = pedetb.find( iter->token.code().raw() );
-
-            pedetb.modify(
-                iterkuus, name("cet.f"), [&]( auto& s ) {               s.minamount    = minamount; });
-
-            check(minamount.amount < 10000000000000, "Minamount too large");
-        }
-}
-//LOOP TO GET MIN AMOUNTS CLOSED
-
+ 
 //DELETING BASE ITER, BASE ITER IS USED TO DETERMINE THE CORRECT RATIOS WHEN CREATING EOSETF.
 //EVERY REBALANCING GETS NEW BASE ITER, THE SMALLEST AMOUNT FROM ALL THE TOKENS CURRENTLY IN THE FUND.
 basetoktab basetable(_self, _self.value);
@@ -434,28 +368,14 @@ rebalontb vitttb(get_self(), _self.value);
 }
 //END LOOP TO GET THE SMALLEST VALUE IN THE BASE ITERATOR
 
-//LOOP TO GET NEW RATIOS (VERY CRUCIAL COMPONENT, RATIOS ENSURE THAT CORRECT AMOUNTS ARE SENT WHEN CREATING EOSETF)
-  for (int i = 0; i < answers.size(); i++)
+//LOOP TO GET NEW RATIOS (VERY CRUCIAL COMPONENT, RATIOS ENSURE THAT CORRECT AMOUNTS ARE SENT WHEN CREATING EOSETF)
+  for (int i = 0; i < answers.size(); i++)
 {
-    rebalontb geitb(get_self(), _self.value);
 
-    const auto & rebaliter = geitb.get(answers[i].code().raw(), "No token with such symbol." );
+    newratio(answers[i]);
 
-    basetoktab basetable(_self, _self.value);
-    basetok baseiter;
-
-    baseiter = basetable.get();
-
-    const auto & itrbase = geitb.get(baseiter.base.code().raw(), "No token with such symbol." );
-
-    double ratio = static_cast<double>(rebaliter.minamount.amount) / itrbase.minamount.amount;
-
-    auto iterseitse = geitb.find( answers[i].code().raw() );
-
-    geitb.modify(
-        iterseitse, name("cet.f"), [&]( auto& s ) {               s.ratio    = ratio; });
 }
-//LOOP TO GET NEW RATIOS CLOSED
+//LOOP TO GET NEW RATIOS CLOSED
 
 //SET SIZE *NUBMBER OF TOKENS IS THE FUND TO ZERO. SIZE NUMBER OF TOKENS IN FUND NEEDED WHEN CREATING EOSETF.
 //EOSETF IS ONLY ISSUED IF NUMBER OF DIFFERENT TOKENS YOU ARE SENDING IN EQUALS TO THE NUMBER OF TOKENS CURRENTLY IN THE FUND.

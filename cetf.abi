@@ -439,7 +439,11 @@
                     "type": "name"
                 },
                 {
-                    "name": "quantity",
+                    "name": "touser",
+                    "type": "asset"
+                },
+                {
+                    "name": "tosupply",
                     "type": "asset"
                 }
             ]
@@ -473,6 +477,16 @@
                 {
                     "name": "token",
                     "type": "symbol[]"
+                }
+            ]
+        },
+        {
+            "name": "newratiof",
+            "base": "",
+            "fields": [
+                {
+                    "name": "answers",
+                    "type": "symbol"
                 }
             ]
         },
@@ -899,6 +913,20 @@
             ]
         },
         {
+            "name": "transferdiv",
+            "base": "",
+            "fields": [
+                {
+                    "name": "owner",
+                    "type": "name"
+                },
+                {
+                    "name": "div",
+                    "type": "asset"
+                }
+            ]
+        },
+        {
             "name": "unstakecetf",
             "base": "",
             "fields": [
@@ -1087,6 +1115,11 @@
             "ricardian_contract": ""
         },
         {
+            "name": "newratiof",
+            "type": "newratiof",
+            "ricardian_contract": ""
+        },
+        {
             "name": "pause",
             "type": "pause",
             "ricardian_contract": ""
@@ -1149,6 +1182,11 @@
         {
             "name": "transfer",
             "type": "transfer",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "transferdiv",
+            "type": "transferdiv",
             "ricardian_contract": ""
         },
         {

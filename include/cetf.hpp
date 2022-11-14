@@ -14,7 +14,9 @@ CONTRACT cetf : public contract {
 //Actions related to claiming tokens 
 ACTION getdiv(name user, name clmspecifier);
 ACTION getcetf(name user, name clmspecifier);
-ACTION issuetoken (name owner, asset quantity);
+ACTION issuetoken (name owner, asset touser, asset tosupply);
+ACTION transferdiv ( name owner, asset div );
+
 //Actions related to configuring the fund
 ACTION setsupplyy(asset quantity, asset maxsupply);
 ACTION delrebalon();
@@ -36,6 +38,7 @@ ACTION adjusttok(name contract, symbol token, int64_t decimals, double tokenperc
 //Action related to rebalancing of the EOSETF
 ACTION rebalance(name user, uint64_t pollkey, name community);
 ACTION rebalancetwo(vector<symbol> answers);
+ACTION newratiof(symbol answers);
 //Actions related to staking
 ACTION stakecetf(name user, asset quantity, uint64_t id);
 ACTION unstakecetf(name user, vector<asset> quantity, vector<uint64_t> id, name clmspecifier);
@@ -88,14 +91,17 @@ ACTION delmanager(name community, name manager);
 //Checks whether creation and redemption of EOSETF is on pause
 void pauseornot();
 
-//Triggering actions of other contracts
-void createetf(name from, asset reward);
+//Triggering actions public actions of contracts
+void createetf(name from, asset touser, asset tosupply);
+void creatediv(name from, asset div);
 void send(name from, name to, asset quantity, std::string memo, name contract);
 void adjusttokk(name contract, symbol token, int64_t decimals, double tokenpercnew);
 void rebalancetwoin(vector<symbol> answers);
 
 //Part of rebalancing
 void votersnulli(name community, uint64_t pollkey);
+void newratio(symbol answers);
+
 
 //Refunding tokens for sending back EOSETF
 void refund_tokens_back(name from, name to, asset quantity, std::string memo);
