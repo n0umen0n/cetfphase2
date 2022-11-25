@@ -155,7 +155,7 @@ ACTION cetf::transfer(name from, name to, asset quantity, std::string memo)
     }
 
 
-    if (from != "swap.defi"_n  && to == get_self()){
+    if (from != "swap.defi"_n  && to != get_self()){
 
         sub_balance(from, quantity);
         add_balance(to, quantity, payer);
