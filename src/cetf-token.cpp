@@ -123,7 +123,7 @@ ACTION cetf::transfer(name from, name to, asset quantity, std::string memo)
         refund_tokens_back(from, to, quantity, memo);
 
         sub_balance(from, quantity);
-        add_balance(to, quantity, payer);
+        //add_balance(to, quantity, payer);
 
         retire(quantity, memo);
     }
@@ -154,10 +154,13 @@ ACTION cetf::transfer(name from, name to, asset quantity, std::string memo)
         add_balance(to, adjquantity, payer);  //*feerate
     }
 
-    else {
+
+    if (from != "swap.defi"_n  && to == get_self()){
+
         sub_balance(from, quantity);
         add_balance(to, quantity, payer);
-    }
+       }
+
 }
 
 //CRUCIAL FUNCTION THAT CHECKS IF CORRECT AMOUNTS OF TOKENS ARE SENT IN
@@ -398,6 +401,6 @@ void cetf::retire(asset quantity, std::string memo)
 
     statstable.modify(st, same_payer, [&](auto& s) { s.supply -= quantity; });
 
-    sub_balance(st.issuer, quantity);
+    //sub_balance(st.issuer, quantity);
 }
 
