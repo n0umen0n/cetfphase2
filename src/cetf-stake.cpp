@@ -1,6 +1,6 @@
 #include <cetf.hpp>
 
-ACTION cetf::stakecetf(name user, asset quantity, uint64_t id)
+ACTION cetf::stakecetf(name user, asset quantity, uint64_t id)
 {
     require_auth(user);
 
@@ -22,47 +22,47 @@ ACTION cetf::stakecetf(name user, asset quantity, uint64_t id)
 
     perzonstkd personstktbl(_self, user.value);
     auto userrow = personstktbl.find(id);
-    if (userrow == personstktbl.end() )
-         
+    if (userrow == personstktbl.end() )
+         
         {
             personstktbl.emplace(_self, [&](auto& s) {
                 s.id = id;
                 s.staked = quantity;
                 s.staketime = current_time_point();
                 s.stakeperiod = divperiter.claimperiod;
-                   
+                   
             });
         }
-    if (userrow != personstktbl.end() )
-          { check(false, "This ID already in use, please try staking again."); }
+    if (userrow != personstktbl.end() )
+          { check(false, "This ID already in use, please try staking again."); }
 
 for
-     (auto iter = personstktbl.begin(); iter != personstktbl.end(); iter++)
+     (auto iter = personstktbl.begin(); iter != personstktbl.end(); iter++)
     {
         perstotlskd perstottb(_self, _self.value);
         auto totrow = perstottb.find(user.value);
 
-        if (totrow == perstottb.end() )
-             
+        if (totrow == perstottb.end() )
+             
             {
                 perstottb.emplace(_self, [&](auto& s) {
                     s.indtotstaked = iter->staked;
                     s.staker = user;
                 });
             }
-        if (totrow != perstottb.end() )
-             
+        if (totrow != perstottb.end() )
+             
             {
                 perstottb.modify(
-                    totrow, name("cet.f"), [&]( auto& s ) {
+                    totrow, name("cet.f"), [&]( auto& s ) {
                         s.indtotstaked += iter->staked;
-                           
+                           
                     });
             }
     }
 
 perstotlskd indtotstk(_self, _self.value);
-const auto & pede = indtotstk.get(user.value, "Individual has not staked." );
+const auto & pede = indtotstk.get(user.value, "Individual has not staked." );
 
 check(from.balance.amount >= pede.indtotstaked.amount, "Trying to stake more than available CETF.");
 
@@ -75,13 +75,13 @@ totalstktbl.set(newstats, _self);
 
 auto totalrow = indtotstk.find(user.value);
 indtotstk.modify(
-    totalrow, name("cet.f"), [&]( auto& s ) {
+    totalrow, name("cet.f"), [&]( auto& s ) {
         s.indtotstaked.amount = 0;
-           
+           
     });
 }
 
-ACTION cetf::unstakecetf(name user, vector<asset> quantity, vector<uint64_t> id, name clmspecifier)
+ACTION cetf::unstakecetf(name user, vector<asset> quantity, vector<uint64_t> id, name clmspecifier)
 {
     require_auth(user);
 
@@ -95,7 +95,7 @@ ACTION cetf::unstakecetf(name user, vector<asset> quantity, vector<uint64_t> i
 
     check(claimiter.claimperiod != divperiter.claimperiod, "Please don't claim next period, then you will be able to unstake.");
 
-      for (int i = 0; i < quantity.size(); i++)
+      for (int i = 0; i < quantity.size(); i++)
     {
         auto sym = quantity[i].symbol.code();
         stats statstable(_self, sym.raw());
@@ -112,17 +112,17 @@ ACTION cetf::unstakecetf(name user, vector<asset> quantity, vector<uint64_t> i
 
         auto userrow = personstktbl.find(id[i]);
 
-        const auto & iterone = personstktbl.get(id[i], "No such staking ID(1)." );
+        const auto & iterone = personstktbl.get(id[i], "No such staking ID(1)." );
 
         check(iterone.staked.amount >= quantity[i].amount, "Unstaking too much CETF.");
 
         personstktbl.modify(
-            userrow, name("cet.f"), [&]( auto& s ) {
+            userrow, name("cet.f"), [&]( auto& s ) {
                 s.staked.amount -= quantity[i].amount;
-                   
+                   
             });
 
-        const auto & itertwo = personstktbl.get(id[i], "No such staking ID(2)." );
+        const auto & itertwo = personstktbl.get(id[i], "No such staking ID(2)." );
 
         if (itertwo.staked.amount == 0) {
             personstktbl.erase(userrow);
@@ -138,7 +138,7 @@ ACTION cetf::unstakecetf(name user, vector<asset> quantity, vector<uint64_t> i
     }
 }
 
-ACTION cetf::unstakeetf(name user, vector<asset> quantity, vector<uint64_t> id, name clmspecifier)
+ACTION cetf::unstakeetf(name user, vector<asset> quantity, vector<uint64_t> id, name clmspecifier)
 
 {
     require_auth(user);
@@ -153,24 +153,24 @@ ACTION cetf::unstakeetf(name user, vector<asset> quantity, vector<uint64_t> id
 
     check(claimiter.claimperiod != divperiter.claimperiod, "Please don't claim next period, then you will be able to unstake.");
 
-    for (int i = 0; i < quantity.size(); i++) {
+    for (int i = 0; i < quantity.size(); i++) {
         indstkdetftb personstktbl(_self, user.value);
 
         auto userrow = personstktbl.find(id[i]);
 
-        const auto & iterone = personstktbl.get(id[i], "No such staking ID(1)." );
+        const auto & iterone = personstktbl.get(id[i], "No such staking ID(1)." );
 
         check(iterone.staked.amount >= quantity[i].amount, "Unstaking too much BOXAUJ.");
 
         personstktbl.modify(
-            userrow, name("cet.f"), [&]( auto& s ) {
+            userrow, name("cet.f"), [&]( auto& s ) {
                 s.staked.amount -= quantity[i].amount;
-                   
+                   
             });
 
         send("cet.f"_n, user, quantity[i], "Returning LP tokens", "lptoken.defi"_n);
 
-        const auto & itertwo = personstktbl.get(id[i], "No such staking ID(2)." );
+        const auto & itertwo = personstktbl.get(id[i], "No such staking ID(2)." );
 
         if (itertwo.staked.amount == 0) {
             personstktbl.erase(userrow);

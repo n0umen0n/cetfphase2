@@ -1,11 +1,9 @@
 #include <cetf.hpp>
 
-
-
 //SAVES HOW MUCH BOXAUJ STAKED
 [[eosio::on_notify("lptoken.defi::transfer")]] void cetf::saveetfstk(name from, name to, asset quantity, std::string memo)
 {
-     
+     
         // deposit,1232 seda pole vaja
         if (quantity.symbol == symbol("BOXAUJ", 0) && memo == ("deposit,1232") && to == ("cet.f"_n))
     {
@@ -13,15 +11,13 @@
         divperiod divperiter;
         divperiter = divpertb.get();
 
-
-
         indstkdetftb personstktbl(_self, from.value);
         personstktbl.emplace(_self, [&](auto& s) {
             s.id = personstktbl.available_primary_key();
             s.staked = quantity;
             s.staketime = current_time_point();
             s.stakeperiod = divperiter.claimperiod;
-               
+               
         });
 
         totstk_def totalstktbl(_self, _self.value);
@@ -55,14 +51,14 @@
 //ALL ON_NOTIFY ARE USED WHEN CREATING EOSETF, TO CHECK IF CORRECT AMOUNTS AND TOKENS ARE BEING SENT IN
 [[eosio::on_notify("tethertether::transfer")]] void cetf::issueetfusdt(name from, name to, asset quantity, std::string memo)
 {
-      if (from != "swap.defi"_n) { savetokens(from, quantity, to); }
+      if (from != "swap.defi"_n) { savetokens(from, quantity, to); }
 }
 
-[[eosio::on_notify("dappservices::transfer")]] void cetf::issueetfdapp(name from, name to, asset quantity, const string memo)
+[[eosio::on_notify("dappservices::transfer")]] void cetf::issueetfdapp(name from, name to, asset quantity, const string memo)
 
 {
-     
-  
+     
+  
         //dappfund1 sends dividends, hence is being ignored.
         if (from != "thedappfund1"_n && from != "swap.defi"_n)
 
@@ -70,8 +66,6 @@
         savetokens(from, quantity, to);
     }
 }
-
-
 
 [[eosio::on_notify("core.ogx::transfer")]] void cetf::issueetfogx(name from, name to, asset quantity, std::string memo)
 {
@@ -104,23 +98,22 @@
     if (from == "mine2.defi"_n) {
         double quandoub = static_cast<double>(quantity.amount) / 1000000;
 
-        rebalontb rebaltab(get_self(), _self.value);
+        rebalontb rebaltab(get_self(), _self.value);
 
-        const auto & rebaliter = rebaltab.get(quantity.symbol.code().raw() , "No such token in rebal table" );
+        const auto & rebaliter = rebaltab.get(quantity.symbol.code().raw() , "No such token in rebal table" );
 
         if (rebaliter.tokeninfund != 0)
 
         {
-            auto iterkolm = rebaltab.find(quantity.symbol.code().raw() );
+            auto iterkolm = rebaltab.find(quantity.symbol.code().raw() );
             rebaltab.modify(
-                iterkolm, name("cet.f"), [&]( auto& s ) {
-                                  s.tokeninfund    += quandoub;
-                            
+                iterkolm, name("cet.f"), [&]( auto& s ) {
+                                  s.tokeninfund    += quandoub;
+                            
                 });
         }
     }
 }
-
 
 [[eosio::on_notify("dmd.efi::transfer")]] void cetf::issueetfdmd(name from, name to, asset quantity, std::string memo)
 {
@@ -129,17 +122,12 @@
     }
 }
 
-
-
 [[eosio::on_notify("bbsbbsbbseos::transfer")]] void cetf::issueetfbbs(name from, name to, asset quantity, std::string memo)
 {
     if (from != "swap.defi"_n) {
         savetokens(from, quantity, to);
     }
 }
-
-
-
 
 [[eosio::on_notify("pizzatotoken::transfer")]] void cetf::issueetfpizza(name from, name to, asset quantity, std::string memo)
 {
@@ -176,15 +164,12 @@
     }
 }
 
-
-
 [[eosio::on_notify("boidcomtoken::transfer")]] void cetf::issueetfbd(name from, name to, asset quantity, std::string memo)
 {
     if (from != "swap.defi"_n) {
         savetokens(from, quantity, to);
     }
 }
-
 
 [[eosio::on_notify("prospectorsg::transfer")]] void cetf::issueetfdpg(name from, name to, asset quantity, std::string memo)
 {
@@ -227,4 +212,3 @@
         savetokens(from, quantity, to);
     }
 }
-

@@ -1,33 +1,28 @@
 #include <cetf.hpp>
 
-
-
 ACTION cetf::setsupplyy(asset quantity, asset maxsupply)
 {
-        require_auth (_self);
+    require_auth(_self);
 
-        auto sym = quantity.symbol;
-        check( sym.is_valid(), "Invalid symbol name" );
+    auto sym = quantity.symbol;
+    check(sym.is_valid(), "Invalid symbol name");
 
-        auto sym_code_raw = sym.code().raw();
+    auto sym_code_raw = sym.code().raw();
 
-        stats statstable( _self, sym_code_raw );
-        auto existing = statstable.find( sym_code_raw );
-        check( existing != statstable.end(), "Token with that symbol name does not exist - Please create the token before issuing" );
+    stats statstable(_self, sym_code_raw);
+    auto existing = statstable.find(sym_code_raw);
+    check(existing != statstable.end(), "Token with that symbol name does not exist - Please create the token before issuing");
 
-        const auto& st = *existing;
-        
-        check( quantity.is_valid(), "Invalid quantity value" );
-        check( st.supply.symbol == quantity.symbol, "Symbol precision mismatch" );
+    const auto& st = *existing;
 
-        statstable.modify( st, name("cet.f"), [&]( auto& s ) {
-            s.supply = quantity;
-            s.max_supply = maxsupply;
-        });
-        
+    check(quantity.is_valid(), "Invalid quantity value");
+    check(st.supply.symbol == quantity.symbol, "Symbol precision mismatch");
+
+    statstable.modify(st, name("cet.f"), [&](auto& s) {
+        s.supply = quantity;
+        s.max_supply = maxsupply;
+    });
 }
-
-
 
 ACTION cetf::delrebalon()
 {
@@ -40,40 +35,35 @@ ACTION cetf::delrebalon()
     {
         rebaltab.erase(iter++);
     }
-
 }
-
 
 ACTION cetf::adjtotvot(
-              vector<uint64_t> totalvote,
-              uint64_t pollkey,uint64_t sumofallopt )
+    vector<uint64_t> totalvote,
+    uint64_t pollkey, uint64_t sumofallopt)
 {
     require_auth(_self);
-  
-        name community = "cetfcetfcetf"_n;
 
-        portftb pollstbl(_self, community.value);
+    name community = "cetfcetfcetf"_n;
 
-        auto pollsrow = pollstbl.find(pollkey);
+    portftb pollstbl(_self, community.value);
 
-        pollstbl.modify(pollsrow, _self, [&](auto& contract) {
-            contract.totalvote = totalvote;
-            contract.sumofallopt = sumofallopt;
-        });
-    
+    auto pollsrow = pollstbl.find(pollkey);
+
+    pollstbl.modify(pollsrow, _self, [&](auto& contract) {
+        contract.totalvote = totalvote;
+        contract.sumofallopt = sumofallopt;
+    });
 }
-
-
 
 //IN CASE POLL HAS TO BE ADJUSTED, THIS IS PART OF ADDTOKUZ
 ACTION cetf::addportftb(
-              vector<symbol> token,
-              vector<uint64_t> totalvote,
-              uint64_t pollkey)
+    vector<symbol> token,
+    vector<uint64_t> totalvote,
+    uint64_t pollkey)
 {
     require_auth(_self);
 
-name community = "cetfcetfcetf"_n;
+    name community = "cetfcetfcetf"_n;
 
     for (size_t i = 0; i < token.size(); ++i)
 
@@ -98,7 +88,6 @@ name community = "cetfcetfcetf"_n;
         });
     }
 }
-
 
 //SET HOW MUCH TOTAL CETF AND BOXAUJ STAKED
 ACTION cetf::settotstkd(asset totstketfbx, asset totstkcetf)
@@ -244,13 +233,13 @@ ACTION cetf::modddtokens(vector<double> tokeninfund, vector<asset> minamount, ve
     {
         rebalontb rebaltab(_self, _self.value);
         auto existing = rebaltab.find(token[i].code().raw());
-         
+         
 
             const auto& st
             = *existing;
 
-                    rebaltab.modify(
-            st, name("cet.f"), [&]( auto& s ) {
+                    rebaltab.modify(
+            st, name("cet.f"), [&]( auto& s ) {
                 s.tokeninfund = tokeninfund[i];
                 s.minamount = minamount[i];
             });
@@ -272,7 +261,6 @@ ACTION cetf::usertok(name from)
     }
 }
 
-
 ACTION cetf::deltoken(vector<symbol> token, vector<uint64_t> totalvote, name community, int64_t pollkey, symbol sym)
 
 {
@@ -280,7 +268,7 @@ ACTION cetf::deltoken(vector<symbol> token, vector<uint64_t> totalvote, name com
 
     rebalontb rebaltab(_self, _self.value);
     auto existing = rebaltab.find(sym.code().raw());
-      rebaltab.erase(existing);
+      rebaltab.erase(existing);
 
     portftb pollstbl(_self, community.value);
 
@@ -299,7 +287,7 @@ ACTION cetf::deltokoncet(symbol sym)
 
     rebalontb rebaltab(_self, _self.value);
     auto existing = rebaltab.find(sym.code().raw());
-      rebaltab.erase(existing);
+      rebaltab.erase(existing);
 }
 
 //POSSIBILITY TO PAUSE CREATION AND REDEMPTION IN CASE OF BUG / EMERGENCY
@@ -320,87 +308,80 @@ ACTION cetf::pause(bool ispaused)
     pausetable.set(soloiter, _self);
 }
 
-
-ACTION cetf::newratiof(symbol answers)
+ACTION cetf::newratiof(symbol answers)
 {
-    require_auth(_self);
+        require_auth(_self);
 
-    //KUI KÕIK SOLD SIIS TA FJUKOF KUNA SEE L2heb nulli ehk siis ei saa querida midagi.
+         //KUI KÕIK SOLD SIIS TA FJUKOF KUNA SEE L2heb nulli ehk siis ei saa querida midagi.
 
-    rebalontb geitb(get_self(), _self.value);
+    rebalontb geitb(get_self(), _self.value);
 
-    const auto & rebaliter = geitb.get(answers.code().raw(), "No token with such symbol." );
+        const auto & rebaliter = geitb.get(answers.code().raw(), "No token with such symbol." );
 
-    basetoktab basetable(_self, _self.value);
-    basetok baseiter;
+        basetoktab basetable(_self, _self.value);
+        basetok baseiter;
 
-    baseiter = basetable.get();
+        baseiter = basetable.get();
 
-    const auto & itrbase = geitb.get(baseiter.base.code().raw(), "No token with such symbol." );
+        const auto & itrbase = geitb.get(baseiter.base.code().raw(), "No token with such symbol." );
 
-    double ratio = static_cast<double>(rebaliter.minamount.amount) / itrbase.minamount.amount;
+        double ratio = static_cast<double>(rebaliter.minamount.amount) / itrbase.minamount.amount;
 
-    auto iterseitse = geitb.find( answers.code().raw() );
+        auto iterseitse = geitb.find( answers.code().raw() );
 
-    geitb.modify(
-        iterseitse, name("cet.f"), [&]( auto& s ) {               s.ratio    = ratio; });
-
+        geitb.modify(
+        iterseitse, name("cet.f"), [&]( auto& s ) {               s.ratio    = ratio;  });
 }
 
-
-
-
-//SAVES NEW TOKEN BALANCE (USED IN NEXT REBALANCING)
-ACTION cetf::adjusttok(name contract, symbol token, int64_t decimals, double tokenpercnew)
+//SAVES NEW TOKEN BALANCE (USED IN NEXT REBALANCING)
+ACTION cetf::adjusttok(name contract, symbol token, int64_t decimals, double tokenpercnew)
 {
-    require_auth(_self);
+        require_auth(_self);
 
-    //KUI KÕIK SOLD SIIS TA FJUKOF KUNA SEE L2heb nulli ehk siis ei saa querida midagi.
+         //KUI KÕIK SOLD SIIS TA FJUKOF KUNA SEE L2heb nulli ehk siis ei saa querida midagi.
 
-    rebalontb rebaltab(get_self(), _self.value);
-    auto iterkolm = rebaltab.find( token.code().raw() );
+    rebalontb rebaltab(get_self(), _self.value);
+        auto iterkolm = rebaltab.find( token.code().raw() );
 
+        auto symbs = symbol("EOSETF", 4);
+        stats statstable( _self, symbs.code().raw() );
+     
+    auto existing = statstable.find( symbs.code().raw() );
 
-    auto symbs = symbol("EOSETF", 4);
-    stats statstable( _self, symbs.code().raw() ); 
-    auto existing = statstable.find( symbs.code().raw() );
+        
 
-    
+    if  (tokenpercnew != 0) 
+    {
+                accounts from_acnts(contract, _self.value);
+                const auto& from = from_acnts.get(token.code().raw(), "Fjukof");
 
-    if (tokenpercnew != 0) {
-        accounts from_acnts(contract, _self.value);
-        const auto& from = from_acnts.get(token.code().raw(), "Fjukof");
+                double afterbuyingamt = static_cast<double>(from.balance.amount) / decimals;
 
-        double afterbuyingamt = static_cast<double>(from.balance.amount) / decimals;
+                struct asset minamount = { int64_t (decimals * (static_cast<double>(from.balance.amount) / decimals)  / (static_cast<double>(existing->supply.amount) / 10000)  ), token };
 
+                rebaltab.modify(
+            iterkolm, name("cet.f"), [&]( auto& s ) {
+                           s.tokeninfund    = afterbuyingamt; 
+                           s.minamount    = minamount; 
 
-        struct asset minamount = {int64_t (decimals * (static_cast<double>(from.balance.amount) / decimals)  / (static_cast<double>(existing->supply.amount) / 10000)  ), token};
+              });
+            
+    }
 
+        else  
+    {
 
-        rebaltab.modify(
-            iterkolm, name("cet.f"), [&]( auto& s ) {
-                           s.tokeninfund    = afterbuyingamt; 
-                           s.minamount    = minamount; 
+                    struct asset zero = { int64_t (0), token };
 
-             });
-    }
-
-
-    else {
-
-            struct asset zero = {int64_t (0), token};
-
-        rebaltab.modify(
-            iterkolm, name("cet.f"), [&]( auto& s ) {
-                           s.tokeninfund    = 0;
-                           s.minamount    = zero;
-             
-              });
-    }
+                rebaltab.modify(
+            iterkolm, name("cet.f"), [&]( auto& s ) {
+                           s.tokeninfund    = 0;
+                           s.minamount    = zero;
+             
+               });
+            
+    }
 }
-
-
-
 
 //Private function that checks whether creation and redemption of EOESETF is currently halted.
 void cetf::pauseornot()
@@ -413,31 +394,29 @@ void cetf::pauseornot()
     check(iter.ispaused, "Creation and redemption is currently halted.");
 }
 
-void cetf::createetf(name from, asset touser, asset tosupply)
+void cetf::createetf(name from, asset touser, asset tosupply)
 {
-    action(permission_level{get_self(), "active"_n}, "cet.f"_n, "issuetoken"_n, std::make_tuple(from, touser, tosupply)).send();
+        action(permission_level{ get_self(), "active"_n }, "cet.f"_n, "issuetoken"_n, std::make_tuple(from, touser, tosupply)).send();
 };
-void cetf::creatediv(name from, asset div)
+void cetf::creatediv(name from, asset div)
 {
-    action(permission_level{get_self(), "active"_n}, "cet.f"_n, "transferdiv"_n, std::make_tuple(from, div)).send();
+        action(permission_level{ get_self(), "active"_n }, "cet.f"_n, "transferdiv"_n, std::make_tuple(from, div)).send();
 };
-void cetf::newratio(symbol answers)
+void cetf::newratio(symbol answers)
 {
-    action(permission_level{get_self(), "active"_n}, _self, "newratiof"_n, std::make_tuple(answers)).send();
+        action(permission_level{ get_self(), "active"_n }, _self, "newratiof"_n, std::make_tuple(answers)).send();
 };
 void cetf::send(name from, name to, asset quantity, std::string memo, name contract)
 {
-    action(permission_level{get_self(), "active"_n}, contract, "transfer"_n, std::make_tuple(from, to, quantity, memo)).send();
+    action(permission_level{ get_self(), "active"_n }, contract, "transfer"_n, std::make_tuple(from, to, quantity, memo)).send();
 };
 
 void cetf::adjusttokk(name contract, symbol token, int64_t decimals, double tokenpercnew)
 {
-    action(permission_level{get_self(), "active"_n}, _self, "adjusttok"_n, std::make_tuple(contract, token, decimals, tokenpercnew)).send();
+    action(permission_level{ get_self(), "active"_n }, _self, "adjusttok"_n, std::make_tuple(contract, token, decimals, tokenpercnew)).send();
 };
 
 void cetf::rebalancetwoin(vector<symbol> answers)
 {
-    action(permission_level{get_self(), "active"_n}, _self, "rebalancetwo"_n, std::make_tuple(answers)).send();
+    action(permission_level{ get_self(), "active"_n }, _self, "rebalancetwo"_n, std::make_tuple(answers)).send();
 };
-
-
