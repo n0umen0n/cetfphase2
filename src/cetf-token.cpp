@@ -127,7 +127,7 @@ ACTION cetf::transfer(name from, name to, asset quantity, std::string memo)
     }
 
     //IN CASE SOMEBODY PURCHASES FROM DEFIBOX THEY GET 95% FROM THE PURCHASED AMOUNT 5% GOES TO CETF HOLDERS.
-    if (from == "swap.defi"_n && memo != "Defibox: withdraw" && quantity.symbol == symbol("EOSETF", 4)) {
+    else if (from == "swap.defi"_n && memo != "Defibox: withdraw" && quantity.symbol == symbol("EOSETF", 4)) {
         feesadjust_def etffeestb(_self, _self.value);
         feesadjust feeitr;
 
@@ -151,7 +151,7 @@ ACTION cetf::transfer(name from, name to, asset quantity, std::string memo)
         add_balance(to, adjquantity, payer); //*feerate
     }
 
-    if (from != "swap.defi"_n && to != get_self()) {
+    else {
 
         sub_balance(from, quantity);
         add_balance(to, quantity, payer);
