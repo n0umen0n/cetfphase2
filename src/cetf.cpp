@@ -1,5 +1,16 @@
 #include <cetf.hpp>
 
+#include "cetf-claim.cpp"
+#include "cetf-config.cpp"
+#include "cetf-rebalance.cpp"
+#include "cetf-redeem.cpp"
+#include "cetf-stake.cpp"
+#include "cetf-token.cpp"
+#include "cetf-vote.cpp"
+using namespace std;
+using namespace eosio;
+
+
 //SAVES HOW MUCH BOXAUJ STAKED
 [[eosio::on_notify("lptoken.defi::transfer")]] void cetf::saveetfstk(name from, name to, asset quantity, std::string memo)
 {

@@ -1,13 +1,12 @@
-#include <cetf.hpp>
-
+/*
 #include <eosio/eosio.hpp>
 #include <eosio/asset.hpp>
 #include <cmath>
 #include <eosio/singleton.hpp>
 #include <numeric>
-
-using namespace std;
-using namespace eosio;
+*/
+//using namespace std;
+//using namespace eosio;
 
 ACTION cetf::issuetoken ( name owner, asset touser, asset tosupply )
     

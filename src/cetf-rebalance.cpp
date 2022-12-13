@@ -1,4 +1,3 @@
-#include <cetf.hpp>
 
 //MONSTER FUNCTION
 ACTION cetf::rebalance(name user, uint64_t pollkey, name community)

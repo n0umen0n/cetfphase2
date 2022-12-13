@@ -1,4 +1,4 @@
-#include <cetf.hpp>
+
 
 ACTION cetf::setsupplyy(asset quantity, asset maxsupply)
 {

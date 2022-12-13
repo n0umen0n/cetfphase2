@@ -1,4 +1,3 @@
-#include <cetf.hpp>
 
 ACTION cetf::stakecetf(name user, asset quantity, uint64_t id)
 {

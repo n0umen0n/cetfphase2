@@ -1,4 +1,3 @@
-#include <cetf.hpp>
 
 //FUNCTION TO REDEEM TOKENS, GETS TRIGGERED WHEN EOSETF IS SENT TO _SELF
 void cetf::refund_tokens_back(name from, name to, asset quantity, std::string memo)

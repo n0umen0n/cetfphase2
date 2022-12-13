@@ -1,4 +1,3 @@
-#include <cetf.hpp>
 
 ACTION cetf::getdiv(name user, name clmspecifier)
 
