@@ -14,7 +14,6 @@ jobs:
 
       - name: Compile WASM
         run: .github/scripts/build.sh
-        shell: bash
 
       - name: Release
         uses: softprops/action-gh-release@v1
