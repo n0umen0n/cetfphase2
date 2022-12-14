@@ -14,7 +14,7 @@ jobs:
 
        
       - name: Compile WASM
-        run: cdt-cpp -abigen -I ./include -contract cetf -o cetf.wasm src/cetf.cpp 
+        run: cdt-cpp src/cetf.cpp -I include
       - name: Hash
         run: shasum -a 256 cetf.wasm
 
