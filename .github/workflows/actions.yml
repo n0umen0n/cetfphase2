@@ -10,10 +10,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Install Antelope CDT
-        run: wget https://github.com/AntelopeIO/cdt/releases/download/v3.1.0-rc1/cdt_3.1.0-rc1_amd64.deb && sudo apt install ./cdt_3.1.0-rc1_amd64.deb
+        run: wget https://github.com/eosio/eosio.cdt/releases/download/v1.8.1/eosio.cdt_1.8.1-1-ubuntu-18.04_amd64.deb && sudo apt install ./eosio.cdt_1.8.1-1-ubuntu-18.04_amd64.deb
 
       - name: Compile WASM
-        run: cdt-cpp -abigen -I ./include -contract cetf src/cetf.cpp 
+        run: eosio-cpp -abigen -I ./include -contract cetf -o cetf.wasm src/cetf.cpp  
 
       - name: Hash
         run: shasum -a 256 cetf.wasm
