@@ -12,6 +12,9 @@ jobs:
       - name: Install Antelope CDT
         run: wget https://github.com/eosio/eosio.cdt/releases/download/v1.8.1/eosio.cdt_1.8.1-1-ubuntu-18.04_amd64.deb && sudo apt install ./eosio.cdt_1.8.1-1-ubuntu-18.04_amd64.deb
 
+      - name: Persenuss
+        run: sudo apt update && sudo apt install -y libtinfo5
+        
       - name: Compile WASM
         run: eosio-cpp -abigen -I ./include -contract cetf -o cetf.wasm src/cetf.cpp  
 
