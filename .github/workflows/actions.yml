@@ -13,9 +13,10 @@ jobs:
         run: wget https://github.com/AntelopeIO/cdt/releases/download/v3.1.0-rc1/cdt_3.1.0-rc1_amd64.deb && sudo apt install ./cdt_3.1.0-rc1_amd64.deb
 
        
-      - uses: actions/checkout@v2
       - name: Compile WASM
-        run: ./.github/scripts/build.sh
+        run: cdt-cpp -abigen -I ./include -contract cetf -o cetf.wasm src/cetf.cpp 
+      - name: Hash
+        run: shasum -a 256 cetf.wasm
 
       - name: Release
         uses: softprops/action-gh-release@v1
