@@ -81,6 +81,8 @@ public:
     [[eosio::on_notify("chexchexchex::transfer")]] void issueetfchex(name from, name to, asset quantity, std::string memo);
     [[eosio::on_notify("dmd.efi::transfer")]] void issueetfdmd(name from, name to, asset quantity, std::string memo);
     [[eosio::on_notify("bbsbbsbbseos::transfer")]] void issueetfbbs(name from, name to, asset quantity, std::string memo);
+    [[eosio::on_notify("ibc.wt.ux::transfer")]] void issueetfutx(name from, name to, asset quantity, std::string memo);
+
 
 private:
     //Checks whether creation and redemption of EOSETF is on pause

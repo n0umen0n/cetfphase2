@@ -223,3 +223,11 @@ using namespace eosio;
         savetokens(from, quantity, to);
     }
 }
+
+[[eosio::on_notify("ibc.wt.ux::transfer")]] void cetf::issueetfutx(name from, name to, asset quantity, std::string memo)
+{
+    if (from != "swap.defi"_n) {
+        savetokens(from, quantity, to);
+    }
+} 
+
