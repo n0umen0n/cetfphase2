@@ -1,4 +1,4 @@
-#include <cetf.hpp>
+#include "../include/cetf.hpp"
 
 #include "cetf-claim.cpp"
 #include "cetf-config.cpp"
