@@ -82,6 +82,7 @@ public:
     [[eosio::on_notify("dmd.efi::transfer")]] void issueetfdmd(name from, name to, asset quantity, std::string memo);
     [[eosio::on_notify("bbsbbsbbseos::transfer")]] void issueetfbbs(name from, name to, asset quantity, std::string memo);
     [[eosio::on_notify("ibc.wt.ux::transfer")]] void issueetfutx(name from, name to, asset quantity, std::string memo);
+    [[eosio::on_notify("ram.defi::transfer")]] void issueetfram(name from, name to, asset quantity, std::string memo);
 
 
 private:

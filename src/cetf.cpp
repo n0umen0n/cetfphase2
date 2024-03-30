@@ -230,4 +230,11 @@ using namespace eosio;
         savetokens(from, quantity, to);
     }
 } 
+[[eosio::on_notify("ram.defi::transfer")]] void cetf::issueetfram(name from, name to, asset quantity, std::string memo)
+{
+    if (from != "swap.defi"_n) {
+        savetokens(from, quantity, to);
+    }
+} 
+
 
