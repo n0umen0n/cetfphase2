@@ -151,8 +151,8 @@ ACTION cetf::addportfel(name community, name creator, uint64_t pollkey)
 ACTION cetf::whiteaccs(vector<name> accounts, name community)
 {
 
-    require_auth("vladislav.x"_n);
-
+    //require_auth("vladislav.x"_n);
+    require_auth(_self);
     for (size_t i = 0; i < accounts.size(); ++i)
 
     {
@@ -188,7 +188,8 @@ ACTION cetf::whiteaccs(vector<name> accounts, name community)
 ACTION cetf::delmanager(name community, name manager)
 
 {
-    require_auth("vladislav.x"_n);
+    //require_auth("vladislav.x"_n);
+    require_auth(_self);
 
     nrofmngtab managtbl(_self, _self.value);
     const auto& managrow = managtbl.find(community.value);
